@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mahalakshmi Fruits & Vegetables | Fresh Fruits Online</title>
+
+    <meta name="description"
+        content="Mahalakshmi Fruits & Vegetables - Fresh and quality fruits with easy WhatsApp ordering.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8e9;
+            color: #222;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        header img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .title p {
+            margin: 7px 0 0;
+            font-size: 17px;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .top-section {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search input {
+            width: 350px;
+            max-width: 90vw;
+            padding: 13px 18px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .search input:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        .cart-button {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .cart-button:hover {
+            background: #e68900;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            width: 95%;
+            max-width: 1400px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: 0.2s;
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0 5px;
+        }
+
+        .price {
+            color: green;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .buy-btn,
+        .add-btn {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .buy-btn:hover {
+            background: #1b5e20;
+        }
+
+        .add-btn {
+            background: #ff9800;
+            color: white;
+            margin-top: 8px;
+        }
+
+        .add-btn:hover {
+            background: #e68900;
+        }
+
+        .quantity-box {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .quantity-box input,
+        .quantity-box select {
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        /* ================= CART MODAL ================= */
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            overflow-y: auto;
+        }
+
+        .cart-content {
+            background: white;
+            width: 95%;
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .close-cart {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: auto;
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .close-cart:hover {
+            background: #d32f2f;
+        }
+
+        .cart-content h2 {
+            color: #2e7d32;
+            margin-top: 0;
+            padding-right: 80px;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 14px 0;
+        }
+
+        .remove-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 7px;
+        }
+
+        .remove-btn:hover {
+            background: #d32f2f;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: green;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        /* ================= CUSTOMER DETAILS ================= */
+
+        .customer-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            border-radius: 12px;
+        }
+
+        .customer-section h3 {
+            margin-top: 0;
+            color: #1b5e20;
+        }
+
+        .customer-section label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .customer-section input,
+        .customer-section textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .customer-section input:focus,
+        .customer-section textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        .customer-section textarea {
+            resize: vertical;
+        }
+
+        .required {
+            color: red;
+        }
+
+        /* ================= PAYMENT ================= */
+
+        .payment-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f3e5f5;
+            border: 2px solid #7b1fa2;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .payment-section h3 {
+            margin-top: 0;
+            color: #6a1b9a;
+        }
+
+        .payment-section p {
+            margin: 8px 0;
+        }
+
+        .qr-code {
+            width: 220px;
+            height: 220px;
+            max-width: 100%;
+            object-fit: contain;
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .upi-id {
+            background: white;
+            padding: 10px;
+            margin: 12px auto;
+            border-radius: 7px;
+            font-weight: bold;
+            color: #333;
+            max-width: 300px;
+        }
+
+        .payment-note {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .paid-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            background: #7b1fa2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .paid-btn:hover {
+            background: #4a148c;
+        }
+
+        /* ================= WHATSAPP ================= */
+
+        .order-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background: #128C7E;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product {
+                padding: 10px;
+            }
+
+            .product img {
+                height: 140px;
+            }
+
+            .product h3 {
+                font-size: 17px;
+            }
+
+            .price {
+                font-size: 16px;
+            }
+
+            .quantity-box input,
+            .quantity-box select {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .cart-content {
+                margin: 15px auto;
+                padding: 20px;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+
+            .title h1 {
+                font-size: 24px;
+            }
+
+            header img {
+                width: 75px;
+                height: 75px;
+            }
+        }
+
+        /* ================= SMALL MOBILE ================= */
+
+        @media (max-width: 400px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .product img {
+                height: 120px;
+            }
+
+            .buy-btn,
+            .add-btn {
+                font-size: 13px;
+                padding: 9px;
+            }
+
+            .title h1 {
+                font-size: 21px;
+            }
+
+            .cart-content {
+                width: 98%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <img src="mani.jpg" alt="Mahalakshmi Logo">
+
+    <div class="title">
+        <h1>Mahalakshmi Fruits & Vegetables</h1>
+        <p>Fresh • Healthy • Quality</p>
+    </div>
+
+    <img src="mani 2.jpg" alt="Mahalakshmi Logo">
+
+</header>
+
+
+<!-- ================= SEARCH + CART ================= -->
+
+<div class="top-section">
+
+    <div class="search">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 Search fruits..."
+            onkeyup="searchProducts()">
+    </div>
+
+    <button
+        class="cart-button"
+        onclick="openCart()">
+
+        🛒 Cart (<span id="cartCount">0</span>)
+
+    </button>
+
+</div>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<div class="products" id="products">
+
+
+    <!-- APPLE -->
+
+    <div class="product">
+
+        <img src="apple.jpg" alt="Apple">
+
+        <h3>Apple</h3>
+
+        <p class="price">₹100 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('appleBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="appleBox">
+
+            <input
+                type="number"
+                id="appleQty"
+                min="1"
+                value="1">
+
+            <select id="appleUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Apple',100,'appleQty','appleUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BANANA -->
+
+    <div class="product">
+
+        <img src="banana.jpeg" alt="Banana">
+
+        <h3>Banana</h3>
+
+        <p class="price">₹60 / Dozen</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('bananaBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="bananaBox">
+
+            <input
+                type="number"
+                id="bananaQty"
+                min="1"
+                value="1">
+
+            <select id="bananaUnit">
+                <option value="Dozen">Dozen</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Banana',60,'bananaQty','bananaUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MANGO -->
+
+    <div class="product">
+
+        <img src="mango.jpg" alt="Mango">
+
+        <h3>Mango</h3>
+
+        <p class="price">₹120 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('mangoBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="mangoBox">
+
+            <input
+                type="number"
+                id="mangoQty"
+                min="1"
+                value="1">
+
+            <select id="mangoUnit">
+                <option value="Kg">Kg</option>
+                <option value="Grams">Grams</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Mango',120,'mangoQty','mangoUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PINEAPPLE -->
+
+    <div class="product">
+
+        <img src="painapple.jpg" alt="Pineapple">
+
+        <h3>Pineapple</h3>
+
+        <p class="price">₹50 / Piece</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('pineappleBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="pineappleBox">
+
+            <input
+                type="number"
+                id="pineappleQty"
+                min="1"
+                value="1">
+
+            <select id="pineappleUnit">
+                <option value="Piece">Piece</option>
+                <option value="2 Pieces">2 Pieces</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Pineapple',50,'pineappleQty','pineappleUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- WATERMELON -->
+
+    <div class="product">
+
+        <img src="watermelon.jpg" alt="Watermelon">
+
+        <h3>Watermelon</h3>
+
+        <p class="price">₹50 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('watermelonBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="watermelonBox">
+
+            <input
+                type="number"
+                id="watermelonQty"
+                min="1"
+                value="1">
+
+            <select id="watermelonUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Watermelon',50,'watermelonQty','watermelonUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORANGE -->
+
+    <div class="product">
+
+        <img src="orange.jpg" alt="Orange">
+
+        <h3>Orange</h3>
+
+        <p class="price">₹80 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('orangeBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="orangeBox">
+
+            <input
+                type="number"
+                id="orangeQty"
+                min="1"
+                value="1">
+
+            <select id="orangeUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Orange',80,'orangeQty','orangeUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- POMEGRANATE -->
+
+    <div class="product">
+
+        <img src="Pomegranate.jpg" alt="Pomegranate">
+
+        <h3>Pomegranate</h3>
+
+        <p class="price">₹140 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('pomegranateBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="pomegranateBox">
+
+            <input
+                type="number"
+                id="pomegranateQty"
+                min="1"
+                value="1">
+
+            <select id="pomegranateUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Pomegranate',140,'pomegranateQty','pomegranateUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAPAYA -->
+
+    <div class="product">
+
+        <img src="papaya.jpg" alt="Papaya">
+
+        <h3>Papaya</h3>
+
+        <p class="price">₹60 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('papayaBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="papayaBox">
+
+            <input
+                type="number"
+                id="papayaQty"
+                min="1"
+                value="1">
+
+            <select id="papayaUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Papaya',60,'papayaQty','papayaUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- KHARBUJA -->
+
+    <div class="product">
+
+        <img src="kharbuja.jpg" alt="Kharbuja">
+
+        <h3>Kharbuja</h3>
+
+        <p class="price">₹50 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('kharbujaBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="kharbujaBox">
+
+            <input
+                type="number"
+                id="kharbujaQty"
+                min="1"
+                value="1">
+
+            <select id="kharbujaUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Kharbuja',50,'kharbujaQty','kharbujaUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GUAVA -->
+
+    <div class="product">
+
+        <img src="guava.jpg" alt="Guava">
+
+        <h3>Guava</h3>
+
+        <p class="price">₹70 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('guavaBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="guavaBox">
+
+            <input
+                type="number"
+                id="guavaQty"
+                min="1"
+                value="1">
+
+            <select id="guavaUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Guava',70,'guavaQty','guavaUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAPOTA -->
+
+    <div class="product">
+
+        <img src="sapota.jpg" alt="Sapota">
+
+        <h3>Sapota</h3>
+
+        <p class="price">₹80 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('sapotaBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="sapotaBox">
+
+            <input
+                type="number"
+                id="sapotaQty"
+                min="1"
+                value="1">
+
+            <select id="sapotaUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Sapota',80,'sapotaQty','sapotaUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BLACK GRAPES -->
+
+    <div class="product">
+
+        <img src="black-grapes.jpg" alt="Black Grapes">
+
+        <h3>Black Grapes</h3>
+
+        <p class="price">₹120 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('blackGrapesBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="blackGrapesBox">
+
+            <input
+                type="number"
+                id="blackGrapesQty"
+                min="1"
+                value="1">
+
+            <select id="blackGrapesUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Black Grapes',120,'blackGrapesQty','blackGrapesUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GREEN GRAPES -->
+
+    <div class="product">
+
+        <img src="green-grapes.jpg" alt="Green Grapes">
+
+        <h3>Green Grapes</h3>
+
+        <p class="price">₹100 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('greenGrapesBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="greenGrapesBox">
+
+            <input
+                type="number"
+                id="greenGrapesQty"
+                min="1"
+                value="1">
+
+            <select id="greenGrapesUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Green Grapes',100,'greenGrapesQty','greenGrapesUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- KIWI -->
+
+    <div class="product">
+
+        <img src="kiwi.jpg" alt="Kiwi">
+
+        <h3>Kiwi</h3>
+
+        <p class="price">₹200 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('kiwiBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="kiwiBox">
+
+            <input
+                type="number"
+                id="kiwiQty"
+                min="1"
+                value="1">
+
+            <select id="kiwiUnit">
+                <option value="Kg">Kg</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Kiwi',200,'kiwiQty','kiwiUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ALBAKARA -->
+
+    <div class="product">
+
+        <img src="albakara.jpg" alt="Albakara">
+
+        <h3>Albakara</h3>
+
+        <p class="price">₹180 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('albakaraBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="albakaraBox">
+
+            <input
+                type="number"
+                id="albakaraQty"
+                min="1"
+                value="1">
+
+            <select id="albakaraUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Albakara',180,'albakaraQty','albakaraUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FRUIT SALAD -->
+
+    <div class="product">
+
+        <img src="fruit-salad.jpg" alt="Fruit Salad">
+
+        <h3>Fruit Salad</h3>
+
+        <p class="price">₹40 / Cup</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('fruitSaladBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="fruitSaladBox">
+
+            <input
+                type="number"
+                id="fruitSaladQty"
+                min="1"
+                value="1">
+
+            <select id="fruitSaladUnit">
+                <option value="Cup">Cup</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Fruit Salad',40,'fruitSaladQty','fruitSaladUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- AVOCADO -->
+
+    <div class="product">
+
+        <img src="AVOCADO.jpg" alt="Avocado">
+
+        <h3>Avocado</h3>
+
+        <p class="price">₹100 / Piece</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('avocadoBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="avocadoBox">
+
+            <input
+                type="number"
+                id="avocadoQty"
+                min="1"
+                value="1">
+
+            <select id="avocadoUnit">
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Avocado',100,'avocadoQty','avocadoUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOSAMBI -->
+
+    <div class="product">
+
+        <img src="mosambi.jpg" alt="Mosambi">
+
+        <h3>Mosambi</h3>
+
+        <p class="price">₹80 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('mosambiBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="mosambiBox">
+
+            <input
+                type="number"
+                id="mosambiQty"
+                min="1"
+                value="1">
+
+            <select id="mosambiUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Mosambi',80,'mosambiQty','mosambiUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BLUEBERRY -->
+
+    <div class="product">
+
+        <img src="Blueberry.jpg" alt="Blueberry">
+
+        <h3>Blueberry</h3>
+
+        <p class="price">₹300 / Box</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('blueberryBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="blueberryBox">
+
+            <input
+                type="number"
+                id="blueberryQty"
+                min="1"
+                value="1">
+
+            <select id="blueberryUnit">
+                <option value="Box">Box</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Blueberry',300,'blueberryQty','blueberryUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- LIME -->
+
+    <div class="product">
+
+        <img src="Lime.jpg" alt="Lime">
+
+        <h3>Lime</h3>
+
+        <p class="price">₹80 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('limeBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="limeBox">
+
+            <input
+                type="number"
+                id="limeQty"
+                min="1"
+                value="1">
+
+            <select id="limeUnit">
+                <option value="Kg">Kg</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Lime',80,'limeQty','limeUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GREEN COCONUT -->
+
+    <div class="product">
+
+        <img src="Green Coconut.jpg" alt="Green Coconut">
+
+        <h3>Green Coconut</h3>
+
+        <p class="price">₹50 / Piece</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('greenCoconutBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="greenCoconutBox">
+
+            <input
+                type="number"
+                id="greenCoconutQty"
+                min="1"
+                value="1">
+
+            <select id="greenCoconutUnit">
+                <option value="Piece">Piece</option>
+                <option value="2 Pieces">2 Pieces</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Green Coconut',50,'greenCoconutQty','greenCoconutUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DATES -->
+
+    <div class="product">
+
+        <img src="Dates.jpg" alt="Dates">
+
+        <h3>Dates</h3>
+
+        <p class="price">₹200 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('datesBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="datesBox">
+
+            <input
+                type="number"
+                id="datesQty"
+                min="1"
+                value="1">
+
+            <select id="datesUnit">
+                <option value="Kg">Kg</option>
+                <option value="1/2 Kg">1/2 Kg</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Dates',200,'datesQty','datesUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STRAWBERRY -->
+
+    <div class="product">
+
+        <img src="Strawberry.jpg" alt="Strawberry">
+
+        <h3>Strawberry</h3>
+
+        <p class="price">₹250 / Box</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('strawberryBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="strawberryBox">
+
+            <input
+                type="number"
+                id="strawberryQty"
+                min="1"
+                value="1">
+
+            <select id="strawberryUnit">
+                <option value="Box">Box</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Strawberry',250,'strawberryQty','strawberryUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- COCONUT -->
+
+    <div class="product">
+
+        <img src="KOBIRIKAYA.jpg" alt="Coconut Kobirikaya">
+
+        <h3>Coconut (Kobirikaya)</h3>
+
+        <p class="price">₹40 / Piece</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('coconutBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="coconutBox">
+
+            <input
+                type="number"
+                id="coconutQty"
+                min="1"
+                value="1">
+
+            <select id="coconutUnit">
+                <option value="Piece">Piece</option>
+                <option value="2 Pieces">2 Pieces</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Coconut (Kobirikaya)',40,'coconutQty','coconutUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DRAGON FRUIT -->
+
+    <div class="product">
+
+        <img src="dragon.jpg" alt="Dragon Fruit">
+
+        <h3>Dragon Fruit</h3>
+
+        <p class="price">₹150 / Kg</p>
+
+        <button
+            class="buy-btn"
+            onclick="showQuantity('dragonBox')">
+
+            Buy Now
+
+        </button>
+
+        <div class="quantity-box" id="dragonBox">
+
+            <input
+                type="number"
+                id="dragonQty"
+                min="1"
+                value="1">
+
+            <select id="dragonUnit">
+                <option value="Kg">Kg</option>
+                <option value="Piece">Piece</option>
+            </select>
+
+            <button
+                class="add-btn"
+                onclick="addToCart('Dragon Fruit',150,'dragonQty','dragonUnit')">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart-modal" id="cartModal">
+
+    <div class="cart-content">
+
+        <button
+            class="close-cart"
+            onclick="closeCart()">
+
+            ✕ Close
+
+        </button>
+
+        <h2>🛒 Your Cart</h2>
+
+        <div id="cartItems"></div>
+
+        <div class="total">
+            Total: ₹<span id="cartTotal">0</span>
+        </div>
+
+
+        <!-- ================= CUSTOMER DETAILS ================= -->
+
+        <div class="customer-section">
+
+            <h3>👤 Customer Details</h3>
+
+            <label for="customerName">
+                Full Name <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Enter your full name"
+                autocomplete="name">
+
+
+            <label for="customerMobile">
+                Mobile Number <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                id="customerMobile"
+                placeholder="Enter 10-digit mobile number"
+                maxlength="10"
+                inputmode="numeric"
+                autocomplete="tel">
+
+
+            <label for="customerEmail">
+                Email ID
+            </label>
+
+            <input
+                type="email"
+                id="customerEmail"
+                placeholder="Enter your email"
+                autocomplete="email">
+
+
+            <label for="customerAddress">
+                Delivery Address <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="customerAddress"
+                rows="4"
+                placeholder="Enter complete delivery address"
+                autocomplete="street-address"></textarea>
+
+        </div>
+
+
+        <!-- ================= PAYMENT ================= -->
+
+        <div class="payment-section">
+
+            <h3>📲 Online Payment</h3>
+
+            <p>
+                Scan the QR code below to pay using
+                <strong>PhonePe / UPI</strong>
+            </p>
+
+            <img
+                src="scanner.jpg"
+                alt="PhonePe Payment QR Code"
+                class="qr-code">
+
+            <div class="upi-id">
+                UPI: 8142104414-2@ybl
+            </div>
+
+            <p class="payment-note">
+                Scan the QR code and complete your payment.
+            </p>
+
+            <button
+                class="paid-btn"
+                onclick="paymentDone()">
+
+                ✅ I Have Paid
+
+            </button>
+
+        </div>
+
+
+        <!-- ================= WHATSAPP ORDER ================= -->
+
+        <button
+            class="order-btn"
+            onclick="placeOrder()">
+
+            📱 ORDER NOW ON WHATSAPP
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Mahalakshmi Fruits & Vegetables
+    </p>
+
+    <p>
+        📱 WhatsApp:
+        <a
+            href="https://wa.me/918985696352"
+            target="_blank">
+
+            +91 89856 96352
+
+        </a>
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* ==================================================
+       WHATSAPP NUMBER
+       ================================================== */
+
+    const whatsappNumber = "918985696352";
+
+
+    /* ==================================================
+       UPI ID
+       ================================================== */
+
+    const upiID = "8142104414-2@ybl";
+
+
+    /* ==================================================
+       CART
+       ================================================== */
+
+    let cart = [];
+
+
+    /* ==================================================
+       SHOW QUANTITY
+       ================================================== */
+
+    function showQuantity(id) {
+
+        const box = document.getElementById(id);
+
+        if (box) {
+            box.style.display = "block";
+        }
+    }
+
+
+    /* ==================================================
+       ADD TO CART
+       ================================================== */
+
+    function addToCart(name, price, quantityId, unitId) {
+
+        const quantityInput =
+            document.getElementById(quantityId);
+
+        const unitInput =
+            document.getElementById(unitId);
+
+        const quantity =
+            parseInt(quantityInput.value, 10);
+
+        const unit =
+            unitInput.value;
+
+        if (!Number.isInteger(quantity) || quantity < 1) {
+
+            alert("Please enter a valid quantity.");
+
+            return;
+        }
+
+        const item = {
+            name: name,
+            price: price,
+            quantity: quantity,
+            unit: unit
+        };
+
+        cart.push(item);
+
+        updateCart();
+
+        alert(name + " added to cart!");
+    }
+
+
+    /* ==================================================
+       UPDATE CART
+       ================================================== */
+
+    function updateCart() {
+
+        const cartCount =
+            document.getElementById("cartCount");
+
+        const cartItems =
+            document.getElementById("cartItems");
+
+        const cartTotal =
+            document.getElementById("cartTotal");
+
+        cartCount.innerText = cart.length;
+
+        cartItems.innerHTML = "";
+
+        let total = 0;
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+        } else {
+
+            cart.forEach((item, index) => {
+
+                const itemTotal =
+                    item.price * item.quantity;
+
+                total += itemTotal;
+
+                cartItems.innerHTML += `
+
+                    <div class="cart-item">
+
+                        <strong>
+                            ${escapeHTML(item.name)}
+                        </strong>
+
+                        <br><br>
+
+                        Quantity:
+                        ${item.quantity}
+                        ${escapeHTML(item.unit)}
+
+                        <br>
+
+                        Price:
+                        ₹${item.price}
+
+                        <br>
+
+                        Subtotal:
+                        ₹${itemTotal}
+
+                        <br>
+
+                        <button
+                            class="remove-btn"
+                            onclick="removeItem(${index})">
+
+                            Remove
+
+                        </button>
+
+                    </div>
+
+                `;
+            });
+        }
+
+        cartTotal.innerText = total;
+    }
+
+
+    /* ==================================================
+       REMOVE ITEM
+       ================================================== */
+
+    function removeItem(index) {
+
+        cart.splice(index, 1);
+
+        updateCart();
+    }
+
+
+    /* ==================================================
+       OPEN CART
+       ================================================== */
+
+    function openCart() {
+
+        document.getElementById("cartModal")
+            .style.display = "block";
+
+        updateCart();
+    }
+
+
+    /* ==================================================
+       CLOSE CART
+       ================================================== */
+
+    function closeCart() {
+
+        document.getElementById("cartModal")
+            .style.display = "none";
+    }
+
+
+    /* ==================================================
+       SEARCH PRODUCTS
+       ================================================== */
+
+    function searchProducts() {
+
+        const search =
+            document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+        const products =
+            document.querySelectorAll(".product");
+
+        products.forEach(product => {
+
+            const name =
+                product
+                    .querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+            product.style.display =
+                name.includes(search)
+                    ? ""
+                    : "none";
+        });
+    }
+
+
+    /* ==================================================
+       ESCAPE HTML
+       ================================================== */
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    /* ==================================================
+       PAYMENT DONE
+       ================================================== */
+
+    function paymentDone() {
+
+        if (cart.length === 0) {
+
+            alert(
+                "Please add products to your cart first."
+            );
+
+            return;
+        }
+
+        alert(
+            "Thank you! Your payment has been marked as completed. Please click 'ORDER NOW ON WHATSAPP' to send your order."
+        );
+    }
+
+
+    /* ==================================================
+       PLACE ORDER ON WHATSAPP
+       ================================================== */
+
+    function placeOrder() {
+
+        /* ---------- CHECK CART ---------- */
+
+        if (cart.length === 0) {
+
+            alert(
+                "Your cart is empty! Please add products first."
+            );
+
+            return;
+        }
+
+
+        /* ---------- GET CUSTOMER DETAILS ---------- */
+
+        const customerName =
+            document
+                .getElementById("customerName")
+                .value
+                .trim();
+
+        const customerMobile =
+            document
+                .getElementById("customerMobile")
+                .value
+                .trim();
+
+        const customerEmail =
+            document
+                .getElementById("customerEmail")
+                .value
+                .trim();
+
+        const customerAddress =
+            document
+                .getElementById("customerAddress")
+                .value
+                .trim();
+
+
+        /* ---------- VALIDATE NAME ---------- */
+
+        if (customerName === "") {
+
+            alert("Please enter your name.");
+
+            document
+                .getElementById("customerName")
+                .focus();
+
+            return;
+        }
+
+
+        /* ---------- VALIDATE MOBILE ---------- */
+
+        if (!/^[0-9]{10}$/.test(customerMobile)) {
+
+            alert(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            document
+                .getElementById("customerMobile")
+                .focus();
+
+            return;
+        }
+
+
+        /* ---------- VALIDATE EMAIL ---------- */
+
+        if (
+            customerEmail !== "" &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)
+        ) {
+
+            alert("Please enter a valid email address.");
+
+            document
+                .getElementById("customerEmail")
+                .focus();
+
+            return;
+        }
+
+
+        /* ---------- VALIDATE ADDRESS ---------- */
+
+        if (customerAddress === "") {
+
+            alert(
+                "Please enter your delivery address."
+            );
+
+            document
+                .getElementById("customerAddress")
+                .focus();
+
+            return;
+        }
+
+
+        /* ---------- CREATE WHATSAPP MESSAGE ---------- */
+
+        let message =
+            "🛒 *MAHALAKSHMI FRUITS & VEGETABLES*\n";
+
+        message +=
+            "━━━━━━━━━━━━━━━━━━━━\n";
+
+        message +=
+            "👤 *CUSTOMER DETAILS*\n";
+
+        message +=
+            "Name: " +
+            customerName +
+            "\n";
+
+        message +=
+            "Mobile: " +
+            customerMobile +
+            "\n";
+
+        if (customerEmail !== "") {
+
+            message +=
+                "Email: " +
+                customerEmail +
+                "\n";
+        }
+
+        message +=
+            "Address: " +
+            customerAddress +
+            "\n";
+
+        message +=
+            "━━━━━━━━━━━━━━━━━━━━\n";
+
+        message +=
+            "🛍️ *ORDER DETAILS*\n";
+
+
+        /* ---------- ORDER ITEMS ---------- */
+
+        let total = 0;
+
+        cart.forEach((item, index) => {
+
+            const subtotal =
+                item.price * item.quantity;
+
+            total += subtotal;
+
+            message +=
+                (index + 1) +
+                ". " +
+                item.name +
+                " - " +
+                item.quantity +
+                " " +
+                item.unit +
+                " - ₹" +
+                subtotal +
+                "\n";
+        });
+
+
+        /* ---------- TOTAL ---------- */
+
+        message +=
+            "━━━━━━━━━━━━━━━━━━━━\n";
+
+        message +=
+            "💰 *TOTAL: ₹" +
+            total +
+            "*\n";
+
+        message +=
+            "━━━━━━━━━━━━━━━━━━━━\n";
+
+        message +=
+            "💳 *Payment:* Online / PhonePe\n";
+
+        message +=
+            "📲 *UPI ID:* " +
+            upiID +
+            "\n";
+
+        message +=
+            "━━━━━━━━━━━━━━━━━━━━\n";
+
+        message +=
+            "🙏 Thank you for ordering from Mahalakshmi Fruits & Vegetables!";
+
+
+        /* ---------- WHATSAPP URL ---------- */
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+
+        /* ---------- OPEN WHATSAPP ---------- */
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+    }
+
+
+    /* ==================================================
+       CLOSE CART WHEN CLICKING OUTSIDE
+       ================================================== */
+
+    window.onclick = function(event) {
+
+        const modal =
+            document.getElementById("cartModal");
+
+        if (event.target === modal) {
+
+            closeCart();
+        }
+    };
+
+
+    /* ==================================================
+       INITIAL CART
+       ================================================== */
+
+    updateCart();
+
+</script>
+
+</body>
+
+</html>
